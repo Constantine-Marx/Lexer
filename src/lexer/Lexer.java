@@ -43,8 +43,8 @@ public class Lexer {
         reserve(new Word("bool", Tag.BOOL));
         reserve(new Word("string", Tag.STRING));
         reserve(new Word("null", Tag.NULL));
-        reserve(new Word("this",Tag.THIS));
-        reserve(new Word("for",Tag.FOR));
+        reserve(new Word("this", Tag.THIS));
+        reserve(new Word("for", Tag.FOR));
         reserve(new Word("extends", Tag.EXTENDS));
         reserve(new Word("NewArray", Tag.NEWARRAY));
         reserve(new Word("Print", Tag.PRINT));
@@ -53,7 +53,6 @@ public class Lexer {
 
         reserve(Word.False);
         reserve(Word.True);
-
 
 
     }
@@ -80,8 +79,7 @@ public class Lexer {
         for (; ; readch()) {
             if (peek == ' ' || peek == '\t') {
                 continue;
-            }
-            else if (peek == '\n') {
+            } else if (peek == '\n') {
                 line += 1;
             } else {
                 break;
@@ -155,13 +153,16 @@ public class Lexer {
 
             float x = v;
             float d = 10;
-            for (; ; ) {
 
-                if (!Character.isDigit(peek))
+            for (; ; ) {
+                readch();
+                if (!Character.isDigit(peek)) {
                     //判断是否为科学计数形式的浮点数
                     if (peek == 'e' || peek == 'E') {
                         readch();
+                        char flag = '+';
                         if (peek == '+' || peek == '-') {
+                            flag = peek;
                             readch();
                         }
                         if (Character.isDigit(peek)) {
@@ -170,14 +171,20 @@ public class Lexer {
                                 power = 10 * power + Character.digit(peek, 10);
                                 readch();
                             } while (Character.isDigit(peek));
-                            x = (float) (x * Math.pow(10, power));
+                            if (flag == '+') {
+                                x = x * (float) Math.pow(10, power);
+                            } else {
+                                x = x / (float) Math.pow(10, power);
+                            }
                             return new Real(x);
                         }
-                    } else
+                    }else {
                         break;
-                readch();
-                x = x + Character.digit(peek, 10) / d;
-                d = d * 10;
+                    }
+                } else {
+                    x = x + Character.digit(peek, 10) / d;
+                    d = d * 10;
+                }
             }
             return new Real(x);
         }

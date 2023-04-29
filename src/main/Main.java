@@ -26,6 +26,8 @@ public class Main {
                     System.out.printf("%-15s", "(ID , " + token + ")");
                     break;
                 case 270: // NUM
+
+                case 272:
                     System.out.printf("%-15s", "(NUM , " + token + ")");
                     break;
                 //批量一次输出case256-case 293：
@@ -43,7 +45,6 @@ public class Main {
                 case 268:
                 case 269:
                 case 271:
-                case 272:
                 case 273:
                 case 274:
                 case 275:
@@ -88,17 +89,6 @@ public class Main {
     }
 }
 
-
-//class Main {
-//    static void main(){
-//        class Fibonacci f = new Fibonacci();//new a Fibonacci
-//        Print(f.get(ReadInteger()));
-//    }
-//}
-///**
-// * Fibonacci
-// */  /*123*/  /*1234*/
-//class Fibonacci {
 
 
 

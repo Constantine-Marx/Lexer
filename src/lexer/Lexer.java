@@ -230,6 +230,18 @@ public class Lexer {
             }
         }
 
+//判断是否是字符串常量
+        if (peek == '"') {
+            StringBuffer b = new StringBuffer();
+            do {
+                b.append(peek);
+                readch();
+            } while (peek != '"');
+            b.append(peek);
+            readch();
+            String s = b.toString();
+            return new Word(s, Tag.STRING);
+        }
 
         //处理其他字符类Token
         Token tok = new Token(peek);

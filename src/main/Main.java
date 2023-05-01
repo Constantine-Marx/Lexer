@@ -54,7 +54,7 @@ public class Main {
                 case 281:
                 case 282:
                 case 283:
-                case 284:
+
                 case 285:
                 case 286:
                 case 287:
@@ -70,6 +70,9 @@ public class Main {
                     break;
                 case 276:
                     System.out.printf("%-15s", "(HEX , " + token + ")");
+                    break;
+                case 284:
+                    System.out.printf("%-15s", "(STRING , " + token + ")");
                     break;
                 default:
                     //输出左对齐，key为SYS
